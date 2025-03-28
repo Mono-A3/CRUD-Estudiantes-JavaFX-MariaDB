@@ -1,14 +1,18 @@
 package com.escuela.javaescuelasena;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 
 public class EstudiantesController {
     @FXML
-    private Label welcomeText;
+    private TableView<?> tblEstudiantes;
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    public void initialize() {
+        if (tblEstudiantes == null) {
+            System.err.println("⚠ ERROR: tblEstudiantes es NULL. Revisa el FXML.");
+        } else {
+            tblEstudiantes.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        }
     }
 }

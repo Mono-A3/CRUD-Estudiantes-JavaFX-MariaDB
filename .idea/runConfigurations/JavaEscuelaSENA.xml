@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="JavaEscuelaSENA" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.escuela.javaescuelasena.Main" />
+    <module name="JavaEscuelaSENA" />
+    <option name="VM_PARAMETERS" value="--enable-native-access=javafx.graphics" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.escuela.javaescuelasena.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
