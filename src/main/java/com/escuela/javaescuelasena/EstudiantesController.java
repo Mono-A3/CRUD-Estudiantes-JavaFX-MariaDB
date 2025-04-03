@@ -61,6 +61,12 @@ public class EstudiantesController {
         tblEstudiantes.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         cargarEstudiantes();
+
+        tblEstudiantes.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                llenarCampos(newSelection);
+            }
+        });
     }
 
     private void cargarEstudiantes() {
@@ -142,5 +148,13 @@ public class EstudiantesController {
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.showAndWait();
+    }
+
+    private void llenarCampos(Estudiante estudiante) {
+        txtNombre.setText(estudiante.getNombre());
+        txtEdad.setText(String.valueOf(estudiante.getEdad()));
+        txtCarrera.setText(estudiante.getCarrera());
+        txtCiudad.setText(estudiante.getCiudad());
+        cbEstado.setValue(estudiante.getEstado());
     }
 }
