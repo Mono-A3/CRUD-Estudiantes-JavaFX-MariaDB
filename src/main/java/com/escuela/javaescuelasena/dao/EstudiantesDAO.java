@@ -57,7 +57,7 @@ public class EstudiantesDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, estudiante.getNombre());
-            stmt.setString(2, estudiante.getEdad());
+            stmt.setInt(2, estudiante.getEdad());
             stmt.setString(3, estudiante.getCarrera());
             stmt.setString(4, estudiante.getCiudad());
             stmt.setString(5, estudiante.getEstado());
@@ -90,7 +90,7 @@ public class EstudiantesDAO {
         }
     }
 
-    public void buscarPorId(int id) {
+    public Estudiante buscarPorId(int id) {
         String sql = "SELECT * FROM estudiantes WHERE id_estudiante=?";
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -114,7 +114,6 @@ public class EstudiantesDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 }
