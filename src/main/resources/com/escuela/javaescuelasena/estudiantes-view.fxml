@@ -46,7 +46,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <TextField fx:id="txtId" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <TextField GridPane.columnIndex="5" GridPane.rowIndex="2" />
             <TextField fx:id="txtNombre" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <TextField fx:id="txtEdad" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <TextField fx:id="txtCarrera" GridPane.columnIndex="2" GridPane.rowIndex="4" />
@@ -58,21 +58,21 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ciudad:" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Estado:" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Id:" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <Button fx:id="btnGuardar" mnemonicParsing="false" prefHeight="26.0" prefWidth="76.0" text="Guardar" textFill="#2ecc71" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-            <Button fx:id="btnEliminar" mnemonicParsing="false" prefHeight="26.0" prefWidth="76.0" text="Eliminar" textFill="#ff4444" GridPane.columnIndex="7" GridPane.rowIndex="5" />
-            <Button fx:id="btnLimpiar" mnemonicParsing="false" prefHeight="26.0" prefWidth="76.0" text="Limpiar" textFill="#515d5e" GridPane.columnIndex="6" GridPane.rowIndex="5" />
-            <Button fx:id="btnModificar" mnemonicParsing="false" prefHeight="26.0" prefWidth="76.0" text="Modificar" textFill="#3498db" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#agregarEstudiante" prefHeight="26.0" prefWidth="76.0" text="Guardar" textFill="#2ecc71" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminarEstudiante" prefHeight="26.0" prefWidth="76.0" text="Eliminar" textFill="#ff4444" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+            <Button fx:id="btnLimpiar" mnemonicParsing="false" onAction="#limpiarCampos" prefHeight="26.0" prefWidth="76.0" text="Limpiar" textFill="#515d5e" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+            <Button fx:id="btnModificar" mnemonicParsing="false" onAction="#modificarEstudiante" prefHeight="26.0" prefWidth="76.0" text="Modificar" textFill="#3498db" GridPane.columnIndex="5" GridPane.rowIndex="5" />
             <Button fx:id="btnBuscar" mnemonicParsing="false" prefHeight="26.0" prefWidth="76.0" text="Buscar" GridPane.columnIndex="6" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <TableView fx:id="tblEstudiantes" prefHeight="200.0" prefWidth="600.0">
         <columns>
-          <TableColumn prefWidth="80.0" text="Id" />
-          <TableColumn prefWidth="200.0" text="Nombre" />
-          <TableColumn prefWidth="60.0" text="Edad" />
-          <TableColumn prefWidth="170.0" text="Carrera" />
-          <TableColumn prefWidth="140.0" text="Ciudad" />
-          <TableColumn prefWidth="100.0" text="Estado" />
+          <TableColumn fx:id="colId" prefWidth="80.0" text="Id" />
+          <TableColumn fx:id="colNombre" prefWidth="200.0" text="Nombre" />
+          <TableColumn fx:id="colEdad" prefWidth="60.0" text="Edad" />
+          <TableColumn fx:id="colCarrera" prefWidth="170.0" text="Carrera" />
+          <TableColumn fx:id="colCiudad" prefWidth="140.0" text="Ciudad" />
+          <TableColumn fx:id="colEstado" prefWidth="100.0" text="Estado" />
         </columns>
       </TableView>
    </children>

@@ -4,6 +4,7 @@ module com.escuela.javaescuelasena {
     requires java.sql;
 
 
+    opens com.escuela.javaescuelasena.model to javafx.base;
     opens com.escuela.javaescuelasena to javafx.fxml;
     exports com.escuela.javaescuelasena;
 }

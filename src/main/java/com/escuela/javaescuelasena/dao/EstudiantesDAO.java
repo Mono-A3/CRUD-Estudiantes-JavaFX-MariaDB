@@ -36,7 +36,7 @@ public class EstudiantesDAO {
 
             while (rs.next()) {
                 estudiantes.add(new Estudiante(
-                        rs.getInt("id"),
+                        rs.getInt("id_estudiante"),
                         rs.getString("nombre"),
                         rs.getInt("edad"),
                         rs.getString("carrera"),

@@ -2,11 +2,10 @@ package com.escuela.javaescuelasena;
 
 import com.escuela.javaescuelasena.dao.EstudiantesDAO;
 import com.escuela.javaescuelasena.model.Estudiante;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
@@ -14,8 +13,18 @@ import java.util.Optional;
 
 public class EstudiantesController {
     @FXML
-    private TableView<Estudiante> tblEstudiantes;
+    private TextField txtNombre;
+    @FXML
+    private TextField txtEdad;
+    @FXML
+    private TextField txtCarrera;
+    @FXML
+    private TextField txtCiudad;
+    @FXML
+    private ComboBox<String> cbEstado;
 
+    @FXML
+    private TableView<Estudiante> tblEstudiantes;
     @FXML
     private TableColumn<Estudiante, Integer> colId;
     @FXML
@@ -38,6 +47,10 @@ public class EstudiantesController {
             return;
         }
 
+        ObservableList<String> estados = FXCollections.observableArrayList("Activo", "Inactivo");
+        cbEstado.setItems(estados);
+
+
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colEdad.setCellValueFactory(new PropertyValueFactory<>("edad"));
@@ -53,6 +66,7 @@ public class EstudiantesController {
     private void cargarEstudiantes() {
         List<Estudiante> estudiantes = estudiantesDAO.obtenerTodos();
         tblEstudiantes.getItems().setAll(estudiantes);
+        tblEstudiantes.refresh();
     }
 
     @FXML
@@ -61,7 +75,7 @@ public class EstudiantesController {
         int edad = Integer.parseInt(txtEdad.getText());
         String carrera = txtCarrera.getText();
         String ciudad = txtCiudad.getText();
-        String estado = txtEstado.getText();
+        String estado = cbEstado.getValue();
 
         if (nombre.isEmpty() || carrera.isEmpty() || ciudad.isEmpty() || estado.isEmpty()) {
             mostrarAlerta("Error", "Todos los campos deben estar llenos");
@@ -88,7 +102,7 @@ public class EstudiantesController {
         seleccionado.setEdad(Integer.parseInt(txtEdad.getText()));
         seleccionado.setCarrera(txtCarrera.getText());
         seleccionado.setCiudad(txtCiudad.getText());
-        seleccionado.setEstado(txtEstado.getText());
+        seleccionado.setEstado(cbEstado.getValue());
 
         estudiantesDAO.modificar(seleccionado);
         cargarEstudiantes();
@@ -113,12 +127,13 @@ public class EstudiantesController {
         }
     }
 
+    @FXML
     private void limpiarCampos() {
         txtNombre.clear();
         txtEdad.clear();
         txtCarrera.clear();
         txtCiudad.clear();
-        txtEstado.clear();
+        cbEstado.setValue(null);
     }
 
     private void mostrarAlerta(String titulo, String mensaje) {
