@@ -67,6 +67,24 @@ public class EstudiantesController {
                 llenarCampos(newSelection);
             }
         });
+
+        colEstado.setCellFactory(column -> new TableCell<Estudiante, String>() {
+            @Override
+            protected void updateItem(String estado, boolean empty) {
+                super.updateItem(estado, empty);
+                if (empty || estado == null) {
+                    setText(null);
+                    setStyle("");
+                } else {
+                    setText(estado);
+                    if (estado.equalsIgnoreCase("Activo")) {
+                        setStyle("-fx-text-fill: #2E8B57; -fx-font-weight: bold;");
+                    } else {
+                        setStyle("-fx-text-fill: #FF6347; -fx-font-weight: bold;");
+                    }
+                }
+            }
+        });
     }
 
     private void cargarEstudiantes() {
