@@ -104,15 +104,49 @@ public class EstudiantesController {
             return;
         }
 
-        seleccionado.setNombre(txtNombre.getText());
-        seleccionado.setEdad(Integer.parseInt(txtEdad.getText()));
-        seleccionado.setCarrera(txtCarrera.getText());
-        seleccionado.setCiudad(txtCiudad.getText());
-        seleccionado.setEstado(cbEstado.getValue());
+        String nombre = txtNombre.getText().trim();
+        String edadTexto = txtEdad.getText().trim();
+        String carrera = txtCarrera.getText().trim();
+        String ciudad = txtCiudad.getText().trim();
+        String estado = cbEstado.getValue();
 
-        estudiantesDAO.modificar(seleccionado);
-        cargarEstudiantes();
-        limpiarCampos();
+        if (nombre.isEmpty() || edadTexto.isEmpty() || carrera.isEmpty() || ciudad.isEmpty() || estado.isEmpty()) {
+            mostrarAlerta("Error", "Todos los campos deben estar llenos");
+            return;
+        }
+
+        int edad;
+        try {
+            edad = Integer.parseInt(edadTexto);
+            if (edad < 0) {
+                mostrarAlerta("Error", "La edad debe ser un número positivo.");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            mostrarAlerta("Error", "La edad debe ser un número válido");
+            return;
+        }
+
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacion.setTitle("Confirmación de modificación");
+        confirmacion.setHeaderText("¿Estás seguro de que quieres modificar este estudiante?");
+        confirmacion.setContentText("Este cambio no se puede deshacer.");
+
+        Optional<ButtonType> resultado = confirmacion.showAndWait();
+
+        if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
+            seleccionado.setNombre(txtNombre.getText());
+            seleccionado.setEdad(Integer.parseInt(txtEdad.getText()));
+            seleccionado.setCarrera(txtCarrera.getText());
+            seleccionado.setCiudad(txtCiudad.getText());
+            seleccionado.setEstado(cbEstado.getValue());
+
+            estudiantesDAO.modificar(seleccionado);
+            cargarEstudiantes();
+            limpiarCampos();
+
+            mostrarAlerta("Exito", "Estudiante actualizado correctamente.");
+        }
     }
 
     @FXML
@@ -143,7 +177,7 @@ public class EstudiantesController {
     }
 
     private void mostrarAlerta(String titulo, String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
