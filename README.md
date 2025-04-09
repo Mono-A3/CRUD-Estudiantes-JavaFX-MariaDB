@@ -1,8 +1,7 @@
 # CRUD-Estudiantes-JavaFX-MariaDB
 
 Bienvenido a **CRUD-Estudiantes-JavaFX-MariaDB**, una aplicación de escritorio desarrollada con JavaFX para la gestión
-de estudiantes mediante un sistema CRUD (Crear, Leer, Actualizar y Eliminar), con conexión a una base de datos **MariaDB
-**.
+de estudiantes mediante un sistema CRUD (Crear, Leer, Actualizar y Eliminar), con conexión a una base de datos **MariaDB**.
 
 ## 🌟 Descripción
 
