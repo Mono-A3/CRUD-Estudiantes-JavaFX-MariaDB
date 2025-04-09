@@ -46,7 +46,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <TextField GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <TextField fx:id="txtId" GridPane.columnIndex="5" GridPane.rowIndex="2" />
             <TextField fx:id="txtNombre" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <TextField fx:id="txtEdad" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <TextField fx:id="txtCarrera" GridPane.columnIndex="2" GridPane.rowIndex="4" />
@@ -62,7 +62,7 @@
             <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminarEstudiante" prefHeight="26.0" prefWidth="76.0" text="Eliminar" textFill="#ff4444" GridPane.columnIndex="7" GridPane.rowIndex="5" />
             <Button fx:id="btnLimpiar" mnemonicParsing="false" onAction="#limpiarCampos" prefHeight="26.0" prefWidth="76.0" text="Limpiar" textFill="#515d5e" GridPane.columnIndex="6" GridPane.rowIndex="5" />
             <Button fx:id="btnModificar" mnemonicParsing="false" onAction="#modificarEstudiante" prefHeight="26.0" prefWidth="76.0" text="Modificar" textFill="#3498db" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-            <Button fx:id="btnBuscar" mnemonicParsing="false" prefHeight="26.0" prefWidth="76.0" text="Buscar" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#buscarEstudiante" prefHeight="26.0" prefWidth="76.0" text="Buscar" GridPane.columnIndex="6" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <TableView fx:id="tblEstudiantes" prefHeight="200.0" prefWidth="600.0">

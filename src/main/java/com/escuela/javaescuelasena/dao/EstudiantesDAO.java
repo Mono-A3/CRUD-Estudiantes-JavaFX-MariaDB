@@ -89,31 +89,4 @@ public class EstudiantesDAO {
             e.printStackTrace();
         }
     }
-
-    public Estudiante buscarPorId(int id) {
-        String sql = "SELECT * FROM estudiantes WHERE id_estudiante=?";
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                return new Estudiante(
-                        rs.getInt("id_estudiante"),
-                        rs.getString("nombre"),
-                        rs.getInt("edad"),
-                        rs.getString("carrera"),
-                        rs.getString("ciudad"),
-                        rs.getString("estado")
-                );
-            } else {
-                System.out.println("No se encontró el estudiante con ID " + id);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 }

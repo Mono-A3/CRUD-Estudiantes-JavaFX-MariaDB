@@ -13,6 +13,8 @@ import java.util.Optional;
 
 public class EstudiantesController {
     @FXML
+    private TextField txtId;
+    @FXML
     private TextField txtNombre;
     @FXML
     private TextField txtEdad;
@@ -186,12 +188,74 @@ public class EstudiantesController {
     }
 
     @FXML
+    private void buscarEstudiante() {
+        String idInput = txtId.getText().trim();
+        String nombreInput = txtNombre.getText().trim();
+
+        if (idInput.isEmpty() && nombreInput.isEmpty()) {
+            mostrarAlerta("Error", "Ingrese un ID o un nombre para buscar.");
+            return;
+        }
+
+        List<Estudiante> estudiantes = estudiantesDAO.obtenerTodos();
+
+        // 🔎 Buscar por ID si se ingresó un número válido
+        if (!idInput.isEmpty() && idInput.matches("\\d+")) {
+            int idBuscado = Integer.parseInt(idInput);
+            Optional<Estudiante> resultado = estudiantes.stream()
+                    .filter(est -> est.getId() == idBuscado)
+                    .findFirst();
+
+            if (resultado.isPresent()) {
+                Estudiante estudianteEncontrado = resultado.get();
+                tblEstudiantes.setItems(FXCollections.observableArrayList(estudianteEncontrado));
+
+                // ✅ Llenar los campos porque es un único estudiante
+                txtId.setText(String.valueOf(estudianteEncontrado.getId()));
+                txtNombre.setText(estudianteEncontrado.getNombre());
+                txtEdad.setText(String.valueOf(estudianteEncontrado.getEdad()));
+                txtCarrera.setText(estudianteEncontrado.getCarrera());
+                txtCiudad.setText(estudianteEncontrado.getCiudad());
+                cbEstado.setValue(estudianteEncontrado.getEstado());
+            } else {
+                mostrarAlerta("Error", "Estudiante no encontrado.");
+                tblEstudiantes.getItems().clear();
+            }
+            return;
+        }
+
+        if (!nombreInput.isEmpty()) {
+            String nombreBuscado = nombreInput.toLowerCase();
+            List<Estudiante> coincidencias = estudiantes.stream()
+                    .filter(est -> est.getNombre().toLowerCase().contains(nombreBuscado))
+                    .toList();
+
+            if (!coincidencias.isEmpty()) {
+                tblEstudiantes.setItems(FXCollections.observableArrayList(coincidencias));
+
+                //--- Cambio clave: No limpiamos los campos si hay múltiples resultados ---
+                if (coincidencias.size() == 1) {  // Si es solo uno, llenamos los campos
+                    Estudiante estudianteUnico = coincidencias.get(0);
+                    llenarCampos(estudianteUnico);
+                }
+                // (Si hay varios, no hacemos nada: los campos quedan como estaban)
+            } else {
+                mostrarAlerta("Error", "Estudiante no encontrado.");
+                tblEstudiantes.getItems().clear();
+            }
+        }
+    }
+
+    @FXML
     private void limpiarCampos() {
+        txtId.clear();
         txtNombre.clear();
         txtEdad.clear();
         txtCarrera.clear();
         txtCiudad.clear();
         cbEstado.setValue(null);
+
+        cargarEstudiantes();
     }
 
     private void mostrarAlerta(String titulo, String mensaje) {
