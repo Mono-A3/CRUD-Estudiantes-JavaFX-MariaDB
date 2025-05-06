@@ -5,9 +5,7 @@ de estudiantes mediante un sistema CRUD (Crear, Leer, Actualizar y Eliminar), co
 
 ## 🌟 Descripción
 
-Este proyecto ofrece una solución intuitiva para administrar información de estudiantes en una institución educativa. La
-aplicación permite realizar operaciones básicas sobre los datos almacenados, utilizando una interfaz gráfica
-desarrollada en JavaFX y conectividad con MariaDB a través de JDBC.
+Sistema interactivo para el registro y administración de datos de estudiantes. Construido con JavaFX y respaldado por una base de datos MariaDB, implementa operaciones CRUD con validaciones de entrada. Aplica el patrón MVC y utiliza JDBC para asegurar persistencia de datos y mantenimiento escalable.
 
 ## 📌 Funcionalidades
 
